@@ -45,6 +45,10 @@ O agente erra, e parte do trabalho é perceber quando. Alguns momentos reais:
 - quando a mutação do painel ficou em 97,2%, a saída foi escrever os casos que faltavam e simplificar o código redundante. Os poucos mutantes equivalentes ficaram marcados na linha, com o motivo;
 - quando a integração estourou o tempo com três Keycloaks subindo juntos, o agente mediu (cerca de 115 s para dois, 170 s para três) e dividiu a execução em etapas. **Nenhum prazo foi aumentado.**
 
+**Parar uma entrega na hora certa.** A mutação do painel chegou a 17 de 20 minutos no pipeline. Em vez de começar o bloco seguinte, que ia acrescentar código justamente ao painel, pedi ao agente um plano estruturado para resolver o tempo **sem abrir mão de cobertura nem de qualidade**, dentro do plano gratuito. Ele mediu as causas, propôs as opções com custo e risco, e eu escolhi. Também acrescentei uma regra: **alterou o que já existe, revisa os testes de todas as camadas**, inclusive a mutação. Detalhes no [case](cases/mutacao-no-ci.md).
+
+**A própria vitrine ficou para trás.** Esta página ficou quatro blocos sem atualização, porque a regra "atualizar ao fechar o bloco" dependia de alguém lembrar. Percebi ao preparar uma publicação. A solução foi a mesma que uso para o produto: a revisão entrou no ritual de cada bloco, um teste no pipeline barra o pull request com a vitrine atrasada, e a cópia pública passou a sair automaticamente no merge.
+
 **Siglas viram dúvida de custo.** Num plano, li "RS256" e achei que era um valor em reais. Desde então, os planos explicam cada sigla na primeira menção e dizem explicitamente se algo tem custo.
 
 ## O que aprendi

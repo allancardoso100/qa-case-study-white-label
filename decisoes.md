@@ -2,7 +2,7 @@
 
 [← Voltar ao início](README.md)
 
-Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetura): o contexto, as alternativas consideradas, a escolha, as consequências e como migrar no futuro. Em 18/11/2026 eram 29. Estas são as que mais mostram o raciocínio por trás da qualidade.
+Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetura): o contexto, as alternativas consideradas, a escolha, as consequências e como migrar no futuro. Em 24/11/2026 eram 35. Estas são as que mais mostram o raciocínio por trás da qualidade.
 
 | ADR | Decisão | Por quê |
 |---|---|---|
@@ -17,6 +17,11 @@ Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetur
 | 0027 | **Operador global com auditoria obrigatória e eventos com outbox** | Token com perfil de operador **e** construtora é recusado: nunca existe privilégio ambíguo. Cada ação do operador fica registrada, e o evento só sai se a transação gravou |
 | 0028 | **Painel como BFF, com sessão no servidor** | O navegador recebe só um cookie HttpOnly. Os tokens ficam no servidor, com login por PKCE e proteção contra *open redirect* e CSRF |
 | 0029 | **Limite de usuários conferido na hora, com falha fechada** | Se o serviço de construtoras não responder, o convite é recusado (503). O sistema nunca supõe "ilimitado". Sem vaga, a pessoa recebe a explicação em português (409) |
+| 0030 | **Catálogo multissegmento com edição por versão** | Atributos próprios de cada segmento, venda e locação. Duas pessoas editando o mesmo empreendimento não se apagam: a versão antiga é recusada (409) |
+| 0032 | **Personalização do site com rascunho e publicações imutáveis** | Nada vai ao ar sem publicar. Cada publicação é uma foto imutável, protegida por gatilho no banco, e restaurar uma versão cria um rascunho para revisar |
+| 0033 | **Mutação incremental nos PRs, com completas** | O tempo da mutação caiu pela metade sem perder nenhum mutante. [Ver o case](cases/mutacao-no-ci.md) |
+| 0034 | **Vitrine revista em todo bloco e publicada no merge** | Um teste no pipeline barra o PR com a vitrine atrasada, e a cópia pública sai automaticamente, depois do gitleaks |
+| 0035 | **Imagens enviadas refeitas no servidor e privadas até publicar** | O formato é conferido pelo conteúdo, a "bomba de descompressão" é barrada antes de abrir a imagem, e cada tamanho sai como imagem nova, sem a localização GPS. A imagem só vai ao espaço público quando a construtora publica |
 
 ## O padrão de um ADR
 

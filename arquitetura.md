@@ -17,7 +17,7 @@ flowchart TB
     end
 
     subgraph servicos["Microsserviços (NestJS)"]
-        tenant["tenant-service<br/><i>construtoras, domínios, marca, pacote</i>"]
+        tenant["tenant-service<br/><i>construtoras, domínios, marca, pacote<br/>e personalização do site</i>"]
         catalog["catalog-service<br/><i>empreendimentos e mídia</i>"]
         users["user-service<br/><i>equipe, convites, limite do pacote</i>"]
         audit["audit-service<br/><i>histórico imutável</i>"]
@@ -41,7 +41,7 @@ flowchart TB
     rabbit -.-> audit & users
 ```
 
-Próximos blocos: portal do parceiro, serviço de parceiros e serviço de leads.
+Próximos blocos: envio seguro de imagens, parceiros e canais de venda ("Onde comprar ou alugar"), contatos (leads) com LGPD, ambiente completo em containers e testes de segurança dinâmicos. A situação de cada bloco está na [linha do tempo](linha-do-tempo.md).
 
 ## Decisões que moldam a qualidade
 

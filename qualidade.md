@@ -21,13 +21,40 @@ A estratégia parte de um princípio simples: **prevenir antes de detectar**, e 
 
 | Camada | Ferramentas | Testes | Parcela |
 |---|---|---:|---:|
-| Unitário | Vitest, Testing Library | 1.277 | 74% |
-| Integração | Testcontainers, Supertest | 374 | 22% |
-| Contrato | Pact | 29 | 4% (com E2E) |
-| E2E com acessibilidade | Playwright + axe-core | 40 | |
-| **Total** | | **1.720** | |
+Números de 24/11/2026 (bloco 09B):
 
-A mutação (StrykerJS) roda sobre o domínio e os casos de uso: **100%** de mutation score no painel, no serviço de usuários e no serviço de construtoras (1.805 mutantes).
+| Camada | Ferramentas | Testes | Parcela |
+|---|---|---:|---:|
+| Unitário | Vitest, Testing Library | 2.684 | 79% |
+| Integração | Testcontainers, Supertest | 599 | 18% |
+| Contrato | Pact | 55 | 3% (com E2E) |
+| E2E com acessibilidade | Playwright + axe-core | 52 | |
+| **Total** | | **3.390** | |
+
+A mutação (StrykerJS) roda sobre o domínio e os casos de uso: **100%** de mutation score nos cinco pacotes com mutação (painel e serviços de catálogo, construtoras, usuários e auditoria), com 5.163 mutantes mortos.
+
+### Como a mutação cabe no orçamento
+
+- Nos pull requests, a mutação é **incremental**: só o que mudou é testado de novo.
+- Depois de cada merge, toda semana e sob pedido, ela roda **completa**.
+- **Alterou o que já existe, revisa os testes:** quando um pull request muda código que já existia, os testes de todas as camadas são revistos e a mutação do pacote roda completa.
+- O pipeline avisa quando uma rodada passa de 12 minutos, com folga antes do limite de 20.
+
+A história de como chegamos aqui está no [case da mutação no pipeline](cases/mutacao-no-ci.md).
+
+### Guardas do repositório
+
+Alguns testes não testam o produto: testam o próprio projeto. Cada um nasceu de um problema real:
+
+| Guarda | O que impede |
+|---|---|
+| Matriz de mutação | Um pacote novo com mutação ficar fora do pipeline |
+| Navegadores do E2E | Um navegador novo ficar fora da rodada semanal, ou os navegadores voltarem a dividir um job só |
+| Variáveis do Turborepo | Uma variável lida pelo E2E chegar vazia só no pipeline |
+| Saídas da geração de código | O cache do Turborepo pular uma geração necessária |
+| Rótulos do histórico | Uma ação nova aparecer no painel com o código técnico em vez do texto em português |
+| Caracteres invisíveis | Caracteres de controle e de direção de texto escondidos no código (Trojan Source) |
+| Vitrine em dia | Esta vitrine ficar para trás, apontar para fora de si mesma ou citar algo privado |
 
 ## Quality gates
 

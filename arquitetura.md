@@ -21,27 +21,29 @@ flowchart TB
         catalog["catalog-service<br/><i>empreendimentos e mídia</i>"]
         users["user-service<br/><i>equipe, convites, limite do pacote</i>"]
         audit["audit-service<br/><i>histórico imutável</i>"]
+        partner["partner-service<br/><i>parceiros, canais de venda<br/>e cliques sem dado pessoal</i>"]
     end
 
     keycloak["Keycloak<br/><i>login OIDC e perfis</i>"]
     rabbit[["RabbitMQ<br/><i>eventos com outbox</i>"]]
-    s3[("S3<br/><i>fotos e plantas</i>")]
+    s3[("S3<br/><i>fotos, plantas e logos</i>")]
     dbs[("PostgreSQL<br/><i>um banco por serviço</i>")]
 
     usuario --> traefik --> site & backoffice
-    site -->|"HTTP / OpenAPI"| tenant & catalog
+    site -->|"HTTP / OpenAPI"| tenant & catalog & partner
     backoffice -->|"login"| keycloak
-    backoffice -->|"HTTP + JWT"| tenant & catalog & users & audit
-    users -->|"conta de leitura"| tenant
+    backoffice -->|"HTTP + JWT"| tenant & catalog & users & audit & partner
+    users & partner -->|"conta de leitura"| tenant
+    partner -->|"token de quem age"| catalog
     users -->|"administração"| keycloak
-    catalog --> s3
-    tenant & catalog & users & audit --> dbs
-    catalog & users & tenant -.->|"audit-entry.recorded.v1"| rabbit
+    catalog & partner --> s3
+    tenant & catalog & users & audit & partner --> dbs
+    catalog & users & tenant & partner -.->|"audit-entry.recorded.v1"| rabbit
     tenant -.->|"tenant.suspended.v1"| rabbit
     rabbit -.-> audit & users
 ```
 
-Próximos blocos: envio seguro de imagens, parceiros e canais de venda ("Onde comprar ou alugar"), contatos (leads) com LGPD, ambiente completo em containers e testes de segurança dinâmicos. A situação de cada bloco está na [linha do tempo](linha-do-tempo.md).
+Próximos blocos: portal do parceiro (10B), contatos (leads) com LGPD, ambiente completo em containers e testes de segurança dinâmicos. A situação de cada bloco está na [linha do tempo](linha-do-tempo.md).
 
 ## Decisões que moldam a qualidade
 

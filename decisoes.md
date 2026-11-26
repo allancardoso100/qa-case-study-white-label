@@ -2,7 +2,7 @@
 
 [← Voltar ao início](README.md)
 
-Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetura): o contexto, as alternativas consideradas, a escolha, as consequências e como migrar no futuro. Em 24/11/2026 eram 36. Estas são as que mais mostram o raciocínio por trás da qualidade.
+Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetura): o contexto, as alternativas consideradas, a escolha, as consequências e como migrar no futuro. Em 26/11/2026 eram 37. Estas são as que mais mostram o raciocínio por trás da qualidade.
 
 | ADR | Decisão | Por quê |
 |---|---|---|
@@ -23,6 +23,7 @@ Toda decisão de arquitetura vira um **ADR** (registro de decisão de arquitetur
 | 0034 | **Vitrine revista em todo bloco e publicada no merge** | Um teste no pipeline barra o PR com a vitrine atrasada, e a cópia pública sai automaticamente, depois do gitleaks |
 | 0035 | **Imagens enviadas refeitas no servidor e privadas até publicar** | O formato é conferido pelo conteúdo, a "bomba de descompressão" é barrada antes de abrir a imagem, e cada tamanho sai como imagem nova, sem a localização GPS. A imagem só vai ao espaço público quando a construtora publica |
 | 0036 | **Fotos e plantas: o espaço público espelha o que está no ar** | Envio e escolha separados, a escolha só aceita imagens do próprio empreendimento, e uma peça só copia ao publicar e retira ao despublicar: copiar antes de gravar, retirar depois |
+| 0037 | **Parceiros e canais de venda: contador sem dado pessoal e sem trampolim** | O botão do parceiro passa por um contador no próprio site, que leva só ao destino gravado pela construtora: nunca a um endereço vindo da URL. A tabela de cliques não tem coluna para dado pessoal, e dois exclusivos ao mesmo tempo passam só um, por uma trava no banco testada em corrida |
 
 ## O padrão de um ADR
 

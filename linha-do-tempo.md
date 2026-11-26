@@ -24,3 +24,4 @@ O projeto avança em **blocos**. Cada bloco segue o mesmo ritual: plano aprovado
 | 09V | 24/11/2026 | Vitrine revista em todo bloco e publicada automaticamente | Teste-guarda da vitrine; o E2E semanal ganhou um job por navegador |
 | 09B | 24/11/2026 | Envio seguro do logo, do ícone, da capa e da imagem de compartilhamento | Toda imagem refeita no servidor, sem a localização GPS; privada até publicar; ataques reais nos testes |
 | 09C | 24/11/2026 | Fotos e plantas dos empreendimentos enviadas pelo painel | O espaço público espelha o que está no ar: ao despublicar, a foto sai do endereço público; teste de privacidade passou a usar imagens reais |
+| 10A | 26/11/2026 | Parceiros e canais de venda: "Onde comprar ou alugar" na página do empreendimento | Os contratos entre serviços pegaram um campo que o catálogo nunca devolveu, antes de chegar à produção; contador de cliques sem dado pessoal e sem redirecionamento aberto |

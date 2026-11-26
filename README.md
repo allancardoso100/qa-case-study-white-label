@@ -9,17 +9,17 @@ Esta vitrine mostra **como a qualidade foi construída**, não só o resultado.
 
 ## Em 30 segundos
 
-Números de 24/11/2026, depois do bloco 09C (pull request #23):
+Números de 26/11/2026, depois do bloco 10A (pull request #25):
 
 | O quê | Resultado |
 |---|---|
-| Testes automatizados | **3.597** |
-| Formato da pirâmide | 79% unitário · 18% integração · 3% contrato e E2E |
-| Mutation score (StrykerJS) | **100%** em seis pacotes (6.007 mutantes mortos) |
-| Testes de contrato (Pact) | 57, entre o site, o painel e os serviços |
-| E2E (Playwright + axe) | 54 jornadas, **zero** violações graves de acessibilidade; toda semana em 4 navegadores |
+| Testes automatizados | **4.120** |
+| Formato da pirâmide | 80% unitário · 17% integração · 3% contrato e E2E |
+| Mutation score (StrykerJS) | **100%** em sete pacotes (7.429 mutantes avaliados) |
+| Testes de contrato (Pact) | 73, entre o site, o painel e os serviços |
+| E2E (Playwright + axe) | 56 jornadas, **zero** violações graves de acessibilidade; toda semana em 4 navegadores |
 | Isolamento entre construtoras | Suíte obrigatória `@isolamento` em todo endpoint com dados de cliente |
-| Decisões registradas | 36 ADRs (registros de decisão de arquitetura) |
+| Decisões registradas | 37 ADRs (registros de decisão de arquitetura) |
 | Gates no CI | 11, incluindo cobertura, mutação, contratos, acessibilidade e segredos |
 | Guardas do repositório | 7 testes que conferem o próprio projeto: pipeline, variáveis de ambiente, rótulos, caracteres invisíveis e esta vitrine |
 
@@ -83,6 +83,9 @@ Teste bom é o que encontra problema. Alguns exemplos reais:
 | Um teste de privacidade da vitrine garantia que nenhum identificador interno aparecia na resposta, mas usava endereços de imagem fictícios (`teste/fachada.svg`) e nunca pegaria um identificador no endereço | **Revisão do teste** ao trocar as imagens por imagens enviadas de verdade | O endereço da imagem deixou de levar o identificador do empreendimento, e o teste passou a usar imagens reais |
 | Mover uma foto com posição negativa tiraria a última foto da galeria e a poria na frente (`splice(-1)` conta do fim) | **Unitário** da galeria, antes de a tela existir | A posição é conferida antes de mexer na lista |
 | Um logo horizontal, o formato mais comum, sairia achatado num quadrado de 48 × 48 no topo do site | **Revisão da tela** antes do E2E | Altura fixa e largura pela proporção |
+| O serviço de parceiros esperava do catálogo um campo (o identificador do empreendimento) que a ficha de gestão nunca devolveu: em produção, toda consulta falharia como "catálogo indisponível" | **Contrato (Pact)**, na verificação pelo catálogo | O serviço passou a usar o endereço curto do empreendimento, que não muda e é o que a vitrine já conhece; o painel também deixou de esperar o campo |
+| Com o sexto bucket do projeto, o armazenamento voltou a não caber no disco pequeno: o mesmo defeito que já tinha derrubado o pipeline duas vezes | **Integração**, com disco limitado a 2 GB, antes de chegar ao pipeline | Volumes de 32 MB em todos os lugares; o teste falhava com 64 MB e passa com 32 MB |
+| Um leitor de tela ouviria "Ver anúnciode Imobiliária…": o espaço antes do texto escondido se perdia | **Unitário** do componente, pelo nome acessível do link | O botão ganhou um rótulo acessível que começa pelo texto visível |
 | Esta vitrine ficou quatro blocos sem atualização, porque dependia de alguém lembrar | **Revisão do dono do produto** | A revisão entrou no ritual de cada bloco, com teste-guarda e publicação automática no merge |
 
 ## Navegue pela vitrine

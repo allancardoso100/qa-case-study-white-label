@@ -21,17 +21,17 @@ A estratégia parte de um princípio simples: **prevenir antes de detectar**, e 
 
 | Camada | Ferramentas | Testes | Parcela |
 |---|---|---:|---:|
-Números de 24/11/2026 (bloco 09B):
+Números de 24/11/2026 (bloco 09C):
 
 | Camada | Ferramentas | Testes | Parcela |
 |---|---|---:|---:|
-| Unitário | Vitest, Testing Library | 2.684 | 79% |
-| Integração | Testcontainers, Supertest | 599 | 18% |
-| Contrato | Pact | 55 | 3% (com E2E) |
-| E2E com acessibilidade | Playwright + axe-core | 52 | |
-| **Total** | | **3.390** | |
+| Unitário | Vitest, Testing Library | 2.853 | 79% |
+| Integração | Testcontainers, Supertest | 633 | 18% |
+| Contrato | Pact | 57 | 3% (com E2E) |
+| E2E com acessibilidade | Playwright + axe-core | 54 | |
+| **Total** | | **3.597** | |
 
-A mutação (StrykerJS) roda sobre o domínio e os casos de uso: **100%** de mutation score nos cinco pacotes com mutação (painel e serviços de catálogo, construtoras, usuários e auditoria), com 5.163 mutantes mortos.
+A mutação (StrykerJS) roda sobre o domínio e os casos de uso: **100%** de mutation score nos seis pacotes com mutação (painel, biblioteca de imagens e serviços de catálogo, construtoras, usuários e auditoria), com 6.007 mutantes mortos.
 
 ### Como a mutação cabe no orçamento
 

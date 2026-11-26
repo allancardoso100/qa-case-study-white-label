@@ -9,17 +9,17 @@ Esta vitrine mostra **como a qualidade foi construída**, não só o resultado.
 
 ## Em 30 segundos
 
-Números de 24/11/2026, depois do bloco 09B (pull request #21):
+Números de 24/11/2026, depois do bloco 09C (pull request #23):
 
 | O quê | Resultado |
 |---|---|
-| Testes automatizados | **3.390** |
+| Testes automatizados | **3.597** |
 | Formato da pirâmide | 79% unitário · 18% integração · 3% contrato e E2E |
-| Mutation score (StrykerJS) | **100%** em cinco pacotes (5.163 mutantes mortos) |
-| Testes de contrato (Pact) | 55, entre o site, o painel e os serviços |
-| E2E (Playwright + axe) | 52 jornadas, **zero** violações graves de acessibilidade; toda semana em 4 navegadores |
+| Mutation score (StrykerJS) | **100%** em seis pacotes (6.007 mutantes mortos) |
+| Testes de contrato (Pact) | 57, entre o site, o painel e os serviços |
+| E2E (Playwright + axe) | 54 jornadas, **zero** violações graves de acessibilidade; toda semana em 4 navegadores |
 | Isolamento entre construtoras | Suíte obrigatória `@isolamento` em todo endpoint com dados de cliente |
-| Decisões registradas | 35 ADRs (registros de decisão de arquitetura) |
+| Decisões registradas | 36 ADRs (registros de decisão de arquitetura) |
 | Gates no CI | 11, incluindo cobertura, mutação, contratos, acessibilidade e segredos |
 | Guardas do repositório | 7 testes que conferem o próprio projeto: pipeline, variáveis de ambiente, rótulos, caracteres invisíveis e esta vitrine |
 
@@ -39,7 +39,8 @@ Além do site público, já existem:
 - a gestão da equipe com limite de usuários por pacote e o histórico imutável de ações;
 - o catálogo para todos os segmentos (residencial, empresarial, industrial e loteamentos), com venda e locação, busca, paginação e importação de unidades por planilha;
 - a personalização do site pela própria construtora: identidade visual, textos, contatos, redes e seções, com rascunho, pré-visualização, publicação, histórico e restauração;
-- o envio de logo, ícone da aba, capa e imagem de compartilhamento: cada imagem é conferida pelo conteúdo, refeita no servidor sem a localização GPS da foto e fica privada até a publicação.
+- o envio de logo, ícone da aba, capa e imagem de compartilhamento: cada imagem é conferida pelo conteúdo, refeita no servidor sem a localização GPS da foto e fica privada até a publicação;
+- as fotos e plantas dos empreendimentos, pelo mesmo caminho seguro, em tamanhos prontos para cada aparelho, e fora do ar quando o empreendimento é despublicado.
 
 <details>
 <summary>Mais telas: página do empreendimento, login e documentação da API</summary>
@@ -79,6 +80,8 @@ Teste bom é o que encontra problema. Alguns exemplos reais:
 | A rodada semanal do E2E nos 4 navegadores passou de 25 minutos e foi cancelada, sem nenhuma falha até ali | **Rodada semanal** | Um job por navegador, em paralelo, com teste-guarda |
 | O serviço de construtoras deixaria de subir com o armazenamento de imagens fora do ar, derrubando o site inteiro | **Teste de integração** que sobe o serviço com as dependências desligadas | O armazenamento passou a ser preparado em segundo plano; só o envio de imagem falha até ele voltar |
 | O envio de imagens do site passava na máquina local e recebia erro 500 no pipeline: o armazenamento reserva volumes de 30 GB por bucket, e o disco pequeno do CI só comportava o bucket do catálogo | **E2E no CI** | Volumes de 256 MB, um teste de integração com disco limitado a 8 GB que falhava antes da correção e um **teste-guarda** que mantém iguais o armazenamento do pipeline e o dos testes |
+| Um teste de privacidade da vitrine garantia que nenhum identificador interno aparecia na resposta, mas usava endereços de imagem fictícios (`teste/fachada.svg`) e nunca pegaria um identificador no endereço | **Revisão do teste** ao trocar as imagens por imagens enviadas de verdade | O endereço da imagem deixou de levar o identificador do empreendimento, e o teste passou a usar imagens reais |
+| Mover uma foto com posição negativa tiraria a última foto da galeria e a poria na frente (`splice(-1)` conta do fim) | **Unitário** da galeria, antes de a tela existir | A posição é conferida antes de mexer na lista |
 | Um logo horizontal, o formato mais comum, sairia achatado num quadrado de 48 × 48 no topo do site | **Revisão da tela** antes do E2E | Altura fixa e largura pela proporção |
 | Esta vitrine ficou quatro blocos sem atualização, porque dependia de alguém lembrar | **Revisão do dono do produto** | A revisão entrou no ritual de cada bloco, com teste-guarda e publicação automática no merge |
 

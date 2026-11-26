@@ -23,3 +23,4 @@ O projeto avança em **blocos**. Cada bloco segue o mesmo ritual: plano aprovado
 | 09M | 21/11/2026 | Mutação no pipeline sob controle | De 14min29s para 7min37s, com os mesmos mutantes e 100%. [Ver o case](cases/mutacao-no-ci.md) |
 | 09V | 24/11/2026 | Vitrine revista em todo bloco e publicada automaticamente | Teste-guarda da vitrine; o E2E semanal ganhou um job por navegador |
 | 09B | 24/11/2026 | Envio seguro do logo, do ícone, da capa e da imagem de compartilhamento | Toda imagem refeita no servidor, sem a localização GPS; privada até publicar; ataques reais nos testes |
+| 09C | 24/11/2026 | Fotos e plantas dos empreendimentos enviadas pelo painel | O espaço público espelha o que está no ar: ao despublicar, a foto sai do endereço público; teste de privacidade passou a usar imagens reais |
